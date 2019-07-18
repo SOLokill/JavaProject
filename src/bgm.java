@@ -4,11 +4,7 @@ import javax.sound.sampled.AudioInputStream;
         import javax.sound.sampled.UnsupportedAudioFileException;
         import java.io.File;
         import java.io.IOException;
-        import java.util.*;
-        import character.*;
         import javax.sound.sampled.*;
-        import javax.swing.JFrame;
-        import java.io.*;
 
 public class bgm {
     public void bgm() {
