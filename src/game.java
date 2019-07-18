@@ -33,8 +33,8 @@ public class game{
                 체력포션, 마나포션, 홀리크로스);
         monster 피카츄 = new monster("피카츄", 350, constant.ph, 100, 50, constant.patk, constant.pdef);
         monster 람머스 = new monster("람머스", 5500, constant.rh, 380, 110, constant.ratk, constant.rdef);
-        monster 군다 = new monster("군다", 11000, constant.gh, 1000, 1000, 1000,1000);
-        monster 디아블로 = new monster("디아블로", 100000, 100000, 2000, 2000,2000, 2000);
+        monster 군다 = new monster("군다", 11000, constant.gh, 1000, 1000,constant.gatk,constant.gdef);
+        monster 디아블로 = new monster("디아블로", 100000, constant.dh, 2000, 2000,constant.datk, constant.ddef);
         message 메시지 = new message();
         status 상태 = new status();
         battle 연결 = new battle();
