@@ -1,7 +1,5 @@
-public class status {
-
-	public void 장비창(character character) {
-		
+public class status extends Thread{
+	public void status(character character) { //i를 누르면 상태를 보여줌
 		System.out.println("직업:" + character.name);
 		System.out.println("체력:" + character.hp + "/" + character.max_hp);
 		System.out.println("공격력:" + (character.attack_value + character.weapon.attack_value));

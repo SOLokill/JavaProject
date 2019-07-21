@@ -1,7 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
 
-public class game{
+public class game {
     public static void main(String[] args) {
         // 생성한 인스턴스들
         equipment branch = new equipment("나뭇가지", 10, 0);
@@ -18,97 +18,98 @@ public class game{
         skill 홀리크로스 = new skill("홀리크로스", 25000, 150);
         portion 체력포션 = new portion("체력포션", 100, 5);
         portion 마나포션 = new portion("마나포션", 100, 5);
-        character beginner = new character("리무녁", 100, 80, 100, 80, 50, 50, branch, 낡은세트, 체력포션, 마나포션, 달팽이세마리);
-        character michael = new character("미하일", 1000, 800, 1000, 800, 150, 150, knight_sword, 초보기사세트, 체력포션, 마나포션,
+        character beginner = new character("리무녁", 100, 80, 100, 80, 50, 50, 50, 50, branch, 낡은세트, 체력포션, 마나포션, 달팽이세마리);
+        character michael = new character("미하일", 1000, 800, 1000, 800, 150, 150, 150, 150, knight_sword, 초보기사세트, 체력포션, 마나포션,
                 베기);
-        character souljunior = new character("소울주니어", 800, 1000, 800, 1000, 200, 150, knight_sword, 초보기사세트, 체력포션,
+        character souljunior = new character("소울주니어", 800, 1000, 800, 1000, 200, 150, 200, 150, knight_sword, 초보기사세트, 체력포션,
                 마나포션, 베기);
-        character knghit_michael = new character("기사미하일", 30000, 1500, 30000, 1500, 1000, 700, knight_blade, 기사단장세트,
+        character knghit_michael = new character("기사미하일", 30000, 1500, 30000, 1500, 1000, 700, 1000, 700, knight_blade, 기사단장세트,
                 체력포션, 마나포션, 베어가르기);
-        character soulsenior = new character("소울시니어", 20000, 2000, 20000, 2000, 1000, 500, knight_blade, 기사단장세트,
+        character soulsenior = new character("소울시니어", 20000, 2000, 20000, 2000, 1000, 500, 1000, 500, knight_blade, 기사단장세트,
                 체력포션, 마나포션, 베어가르기);
-        character sword_saint_michael = new character("검성미하일", 100000, 8000, 100000, 8000, 3500, 3000, sword_saint,
+        character sword_saint_michael = new character("검성미하일", 100000, 8000, 100000, 8000, 3500, 3000, 3500, 3000, sword_saint,
                 검성세트, 체력포션, 마나포션, 홀리크로스);
-        character soulmaster = new character("소울마스터", 100000, 8000, 100000, 8000, 3500, 2500, sword_saint, 검성세트,
+        character soulmaster = new character("소울마스터", 100000, 8000, 100000, 8000, 3500, 2500, 3500, 2500, sword_saint, 검성세트,
                 체력포션, 마나포션, 홀리크로스);
         monster 피카츄 = new monster("피카츄", 350, constant.ph, 100, 50, constant.patk, constant.pdef);
         monster 람머스 = new monster("람머스", 5500, constant.rh, 380, 110, constant.ratk, constant.rdef);
-        monster 군다 = new monster("군다", 11000, constant.gh, 1000, 1000,constant.gatk,constant.gdef);
-        monster 디아블로 = new monster("디아블로", 100000, constant.dh, 2000, 2000,constant.datk, constant.ddef);
+        monster 군다 = new monster("군다", 11000, constant.gh, 1000, 1000, constant.gatk, constant.gdef);
+        monster 디아블로 = new monster("디아블로", 100000, constant.dh, 2000, 2000, constant.datk, constant.ddef);
         message 메시지 = new message();
+
         status 상태 = new status();
         battle 연결 = new battle();
+        status stat = new status();
         bgm sound = new bgm();
-        File file = new File("C:\\Users\\SouL Kim\\Desktop\\cartoon092.mp3");
         Scanner sc = new Scanner(System.in);
         int i = 0;
         // 여기까지 생성한 인스턴스 들이었습니다.
 
         // 게임 시작
-        System.out.println("게임을 시작하겠습니다.");
-        try {
-            Thread.sleep(500);
-            System.out.println("게임을 시작하기 앞서서 게임에 대해서 설명해드리겠습니다.");
-            Thread.sleep(500);
-            System.out.println("당신은 이 세계에서 몬스터를 잡아 전직을 해야합니다.");
-            Thread.sleep(500);
-            System.out.println("몬스터를 잡고 나면 전직을 하실 수 있습니다.");
-            Thread.sleep(500);
-            System.out.println("전직을 하면 더 강한 능력치, 스킬과 장비를 얻으실 수 있습니다.");
-            Thread.sleep(500);
-            System.out.println("당신은 초보자부터 시작합니다.");
-            Thread.sleep(500);
-            System.out.println("전직 루트는 두가지 루트가 있습니다.");
-            Thread.sleep(500);
-            System.out.print("미하일 루트가 있고 ");
-            Thread.sleep(500);
-            System.out.println("소울마스터 루트가 있습니다.");
-            Thread.sleep(500);
-            System.out.print("미하일 루트는 ");
-            Thread.sleep(500);
-            System.out.print("초보자 ");
-            Thread.sleep(500);
-            System.out.print("- 미하일 ");
-            Thread.sleep(500);
-            System.out.print("- 기사미하일 ");
-            Thread.sleep(500);
-            System.out.print("- 검성미하일 ");
-            Thread.sleep(500);
-            System.out.println("입니다.");
-            Thread.sleep(500);
-            System.out.print("소울마스터 루트는 ");
-            Thread.sleep(500);
-            System.out.print("초보자 ");
-            Thread.sleep(500);
-            System.out.print("- 소울주니어 ");
-            Thread.sleep(500);
-            System.out.print("- 소울시니어 ");
-            Thread.sleep(500);
-            System.out.print("- 소울마스터 ");
-            Thread.sleep(500);
-            System.out.println("입니다.");
-            Thread.sleep(500);
-            System.out.print("선택창에서 번호를 알려드릴 테니 ");
-            Thread.sleep(500);
-            System.out.println("원하는 행동은 선택지를 보고 입력하시면 됩니다.");
-            Thread.sleep(500);
-            System.out.println("그러면 이제 게임을 시작하겠습니다.");
-            Thread.sleep(500);
-            System.out.println("즐거운 시간 되십시오!");
-            System.out.println("\n");
-            System.out.println("로딩 중...");
-        } catch (InterruptedException e) {
-        }
+//        System.out.println("게임을 시작하겠습니다.");
+//        try {
+//            Thread.sleep(500);
+//            System.out.println("게임을 시작하기 앞서서 게임에 대해서 설명해드리겠습니다.");
+//            Thread.sleep(500);
+//            System.out.println("당신은 이 세계에서 몬스터를 잡아 전직을 해야합니다.");
+//            Thread.sleep(500);
+//            System.out.println("몬스터를 잡고 나면 전직을 하실 수 있습니다.");
+//            Thread.sleep(500);
+//            System.out.println("전직을 하면 더 강한 능력치, 스킬과 장비를 얻으실 수 있습니다.");
+//            Thread.sleep(500);
+//            System.out.println("당신은 초보자부터 시작합니다.");
+//            Thread.sleep(500);
+//            System.out.println("전직 루트는 두가지 루트가 있습니다.");
+//            Thread.sleep(500);
+//            System.out.print("미하일 루트가 있고 ");
+//            Thread.sleep(500);
+//            System.out.println("소울마스터 루트가 있습니다.");
+//            Thread.sleep(500);
+//            System.out.print("미하일 루트는 ");
+//            Thread.sleep(500);
+//            System.out.print("초보자 ");
+//            Thread.sleep(500);
+//            System.out.print("- 미하일 ");
+//            Thread.sleep(500);
+//            System.out.print("- 기사미하일 ");
+//            Thread.sleep(500);
+//            System.out.print("- 검성미하일 ");
+//            Thread.sleep(500);
+//            System.out.println("입니다.");
+//            Thread.sleep(500);
+//            System.out.print("소울마스터 루트는 ");
+//            Thread.sleep(500);
+//            System.out.print("초보자 ");
+//            Thread.sleep(500);
+//            System.out.print("- 소울주니어 ");
+//            Thread.sleep(500);
+//            System.out.print("- 소울시니어 ");
+//            Thread.sleep(500);
+//            System.out.print("- 소울마스터 ");
+//            Thread.sleep(500);
+//            System.out.println("입니다.");
+//            Thread.sleep(500);
+//            System.out.print("선택창에서 번호를 알려드릴 테니 ");
+//            Thread.sleep(500);
+//            System.out.println("원하는 행동은 선택지를 보고 입력하시면 됩니다.");
+//            Thread.sleep(500);
+//            System.out.println("그러면 이제 게임을 시작하겠습니다.");
+//            Thread.sleep(500);
+//            System.out.println("즐거운 시간 되십시오!");
+//            System.out.println("\n");
+//            System.out.println("로딩 중...");
+//        } catch (InterruptedException e) {
+//        }
 //		 게임 시작 기본 설명이었습니다.
 //		 잠깐 텀
-        try {
-            Thread.sleep(2000);
-            메시지.스토리시작();
-            Thread.sleep(1000);
-            메시지.이동(beginner, 피카츄);
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
+//        try {
+//            Thread.sleep(2000);
+//            메시지.스토리시작();
+//            Thread.sleep(1000);
+//            메시지.이동(beginner, 피카츄);
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//        }
         int cishu = 0;
         int death = 0;
         while (피카츄.hp > 0) {
@@ -326,21 +327,21 @@ public class game{
                         메시지.마나포션(knghit_michael, 마나포션);
                     }
                     try {
-                    연결.전투2(군다, knghit_michael);
-                    Thread.sleep(1000);
-                    if (knghit_michael.hp <= 0) {
-                        연결.사망(knghit_michael, 군다);
-                        메시지.몹정보(군다);
-                        cishu = 0;
-                        death++;
-                        연결.dead(군다);
-                        if (death == 2) {
-                            연결.희망(knghit_michael);
+                        연결.전투2(군다, knghit_michael);
+                        Thread.sleep(1000);
+                        if (knghit_michael.hp <= 0) {
+                            연결.사망(knghit_michael, 군다);
+                            메시지.몹정보(군다);
+                            cishu = 0;
+                            death++;
+                            연결.dead(군다);
+                            if (death == 2) {
+                                연결.희망(knghit_michael);
+                            }
+                            continue;
                         }
-                        continue;
+                    } catch (InterruptedException e) {
                     }
-                } catch (InterruptedException e) {
-                }
                 }
             }
             메시지.전직(군다, knghit_michael);
@@ -408,21 +409,21 @@ public class game{
                         메시지.마나포션(sword_saint_michael, 마나포션);
                     }
                     try {
-                    연결.전투2(디아블로, sword_saint_michael);
-                    Thread.sleep(1000);
-                    if (sword_saint_michael.hp <= 0) {
-                        연결.사망(sword_saint_michael, 디아블로);
-                        메시지.몹정보(디아블로);
-                        cishu = 0;
-                        death++;
-                        연결.dead(디아블로);
-                        if (death == 2) {
-                            연결.희망(sword_saint_michael);
+                        연결.전투2(디아블로, sword_saint_michael);
+                        Thread.sleep(1000);
+                        if (sword_saint_michael.hp <= 0) {
+                            연결.사망(sword_saint_michael, 디아블로);
+                            메시지.몹정보(디아블로);
+                            cishu = 0;
+                            death++;
+                            연결.dead(디아블로);
+                            if (death == 2) {
+                                연결.희망(sword_saint_michael);
+                            }
+                            continue;
                         }
-                        continue;
+                    } catch (InterruptedException e) {
                     }
-                } catch (InterruptedException e) {
-                }
                 }
                 if (cishu == 3) {
                     System.out.println("디아블로는 브레스를 뿜었습니다!!!");

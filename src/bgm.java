@@ -6,9 +6,9 @@ import javax.sound.sampled.AudioInputStream;
         import java.io.IOException;
         import javax.sound.sampled.*;
 
-public class bgm {
-    public void bgm() {
-        File file = new File("C:\\Users\\SouL Kim\\Desktop\\cartoon092.mp3");
+public class bgm extends Thread{
+    public void run() {
+        File file = new File("C:\\Users\\SouL Kim\\Desktop\\cat.mp3");
         AudioInputStream audioInputStream = null;
         SourceDataLine auline = null;
         try {
