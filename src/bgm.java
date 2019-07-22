@@ -7,32 +7,13 @@ import javax.sound.sampled.AudioInputStream;
         import javax.sound.sampled.*;
 
 public class bgm extends Thread{
-    public void run() {
-        File file = new File("C:\\Users\\SouL Kim\\Desktop\\cat.mp3");
-        AudioInputStream audioInputStream = null;
-        SourceDataLine auline = null;
-        try {
-            audioInputStream = AudioSystem.getAudioInputStream(file);
-        } catch (UnsupportedAudioFileException e1) {
-            e1.printStackTrace();
-            return;
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        AudioFormat format = audioInputStream.getFormat();
-        DataLine.Info info = new DataLine.Info(SourceDataLine.class,format);
-        try{
-            auline = (SourceDataLine) AudioSystem.getLine(info);
-            auline.open(format);
-        } catch (LineUnavailableException e){
-            e.printStackTrace();
-
-            return;
-        } catch (Exception e){
-            e.printStackTrace();
-            return;
-        }
-        auline.start();
+    public void run(monster monster) {
+        while (true) {
+            try {
+                if (monster.name == "피카츄") {
+                    File file = new File(C:\\Users\\SouL Kim)
+                }
+                }
+            }
     }
 }

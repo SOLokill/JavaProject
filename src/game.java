@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class game {
+    static char key = 'a';
     public static void main(String[] args) {
         // 생성한 인스턴스들
         equipment branch = new equipment("나뭇가지", 10, 0);
