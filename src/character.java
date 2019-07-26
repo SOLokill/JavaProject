@@ -16,7 +16,6 @@ public class character {
 
     public character(String name, int hp, int mp, int max_hp, int max_mp, int attack_value, int defend_value, int atk, int def,
                      equipment weapon, equipment equip, portion hp_portion, portion mp_portion, skill skill1) {
-        super();
         this.name = name;
         this.hp = hp;
         this.mp = mp;
