@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/bgm/JLayer1.0.1/src/javazoom"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/bgm/JLayer1.0.1/jl1.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
