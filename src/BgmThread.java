@@ -1,10 +1,8 @@
 import java.io.FileInputStream;
-
 import javazoom.jl.player.Player;
 
 public class BgmThread extends Thread {
 	public String address;
-	private boolean sf = false;
 
 	public BgmThread(String address) {
 		this.address = address;
