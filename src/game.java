@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class game {
 
@@ -60,9 +61,17 @@ public class game {
 		BgmThread fear = new BgmThread("C:\\bgm\\fear.mp3");
 		BgmThread thunder = new BgmThread("C:\\bgm\\thunder.mp3");
 		BgmThread breath = new BgmThread("C:\\bgm\\brath.mp3");
-		Daynight pikachu = new Daynight(피카츄);
-		Daynight ramaus = new Daynight(람머스);
+		BgmThread sword = new BgmThread("C:\\bgm\\sword.mp3");
+		BgmThread rolling = new BgmThread("C:\\bgm\\rolling.mp3");
+		Attack attack = new Attack();
+		Bloodtime pikachu = new Bloodtime(피카츄);
+		Bloodtime ramaus = new Bloodtime(람머스);
+		Bloodtime gunda = new Bloodtime(군다);
+		Bloodtime diablo = new Bloodtime(디아블로);
+		status status = new status();
 		Scanner sc = new Scanner(System.in);
+		Random random = new Random();
+		boolean n = random.nextBoolean();
 		int i = 0;
 		// 여기까지 생성한 인스턴스 들이었습니다.
 		// 게임 시작
@@ -94,42 +103,92 @@ public class game {
 		System.out.println("즐거운 시간 되십시오!");
 		System.out.println("\n");
 		System.out.println("로딩 중...");
-
 ////		 게임 시작 기본 설명이었습니다.
 ////		 잠깐 텀
+
 		메시지.스토리시작();
 		pikachuBgm.start();
 		메시지.이동(beginner, 피카츄);
 		int cishu = 0;
 		int death = 0;
-		while (피카츄.hp > 0) {
-			cishu++;
-			if (cishu == 2) {
-				연결.의지(beginner);
-				brave.run();
-				연결.난동(피카츄);
-				crazy.run();
-			}
-			if (cishu > 2) {
-				연결.난동중(피카츄);
-				crazy.run();
-			}
-			메시지.전투창(beginner);
-			i = sc.nextInt();
-			if (i == 1) {
-				메시지.스킬창(beginner, 달팽이세마리);
+		if (n = true) {
+			while (피카츄.hp > 0) {
+				메시지.전투창(beginner);
 				i = sc.nextInt();
+				status.run(beginner, i);
 				if (i == 1) {
-					연결.전투(피카츄, beginner, 달팽이세마리);
-					beginerBgm.run();
-					연결.마나소모(beginner);
-					if (피카츄.hp <= 0) {
-						연결.몹사망(피카츄);
-						mobdieBgm.run();
-						break;
+					cishu++;
+					메시지.스킬창(beginner, 달팽이세마리);
+					i = sc.nextInt();
+					status.run(beginner, i);
+					if (i == 1) {
+						연결.전투(피카츄, beginner, 달팽이세마리);
+						beginerBgm.run();
+						연결.마나소모(beginner);
+						if (피카츄.hp <= 0) {
+							연결.몹사망(피카츄);
+							mobdieBgm.run();
+							break;
+						}
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(피카츄, beginner);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(피카츄);
+							monsterBgm.run();
+						}
+						if (cishu == 2) {
+							연결.의지(beginner);
+							brave.run();
+							연결.난동(피카츄);
+							crazy.run();
+						}
+						if (cishu > 2) {
+							연결.난동중(피카츄);
+							crazy.run();
+						}
+						if (beginner.hp <= 0) {
+							연결.사망(beginner, 피카츄);
+							cishu = 0;
+							death++;
+							연결.dead(피카츄);
+							mobdieBgm.run();
+							if (death == 2) {
+								연결.희망(beginner);
+								brave.run();
+							}
+							continue;
+						}
 					}
-					연결.전투2(피카츄, beginner);
-					monsterBgm.run();
+					continue;
+				}
+				if (i == 2) {
+					cishu++;
+					메시지.포션();
+					메시지.포션표시(체력포션);
+					메시지.포션표시2(마나포션);
+					ding.run();
+					i = sc.nextInt();
+					status.run(beginner, i);
+					if (i == 1) {
+						메시지.체력포션(beginner, 체력포션);
+						ding.run();
+					}
+					if (i == 2) {
+						메시지.마나포션(beginner, 마나포션);
+						ding.run();
+					}
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(피카츄, beginner);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(피카츄);
+						monsterBgm.run();
+					}
 					if (beginner.hp <= 0) {
 						연결.사망(beginner, 피카츄);
 						cishu = 0;
@@ -142,46 +201,22 @@ public class game {
 						}
 						continue;
 					}
-				}
-				continue;
-			}
-			if (i == 2) {
-				메시지.포션();
-				메시지.포션표시(체력포션);
-				메시지.포션표시2(마나포션);
-				ding.run();
-				i = sc.nextInt();
-				if (i == 1) {
-					메시지.체력포션(beginner, 체력포션);
-					ding.run();
-				}
-				if (i == 2) {
-					메시지.마나포션(beginner, 마나포션);
-					ding.run();
-				}
-				연결.전투2(피카츄, beginner);
-				beginerBgm.run();
-				if (beginner.hp <= 0) {
-					연결.사망(beginner, 피카츄);
-					cishu = 0;
-					death++;
-					연결.dead(피카츄);
-					mobdieBgm.run();
-					if (death == 2) {
-						연결.희망(beginner);
-						brave.run();
-					}
 					continue;
 				}
-				continue;
-			} else {
-				System.out.println("유효하지 않은 접근입니다." + "게임을 다시 시작해주십시오.");
-				System.exit(1);
+				if(i ==3 || i==4 ) {
+					status.run(beginner, i);
+					continue;
+				}
+				if (4 < i || i <= 0) {
+					System.out.println("유효하지 않은 접근입니다." + "게임을 다시 시작해주십시오.");
+					System.exit(1);
+				}
 			}
 		}
 		pikachuBgm.stop();
 		메시지.전직(피카츄, beginner);
 		i = sc.nextInt();
+		status.run(beginner, i);
 		if (i == 1) {
 			메시지.전직완료(michael);
 			System.out.println();
@@ -203,9 +238,11 @@ public class game {
 				}
 				메시지.전투창(michael);
 				i = sc.nextInt();
+				status.run(michael, i);
 				if (i == 1) {
 					메시지.스킬창(michael, 베기);
 					i = sc.nextInt();
+					status.run(michael, i);
 					if (i == 1) {
 						연결.전투(람머스, michael, 베기);
 						연결.마나소모(michael);
@@ -215,8 +252,15 @@ public class game {
 							mobdieBgm.run();
 							break;
 						}
-						연결.전투2(람머스, michael);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(람머스, michael);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(람머스);
+							monsterBgm.run();
+						}
 						if (michael.hp <= 0) {
 							연결.사망(michael, 람머스);
 							메시지.몹정보(람머스);
@@ -238,6 +282,7 @@ public class game {
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
 					i = sc.nextInt();
+					status.run(michael, i);
 					ding.run();
 					if (i == 1) {
 						메시지.체력포션(michael, 체력포션);
@@ -247,8 +292,15 @@ public class game {
 						메시지.마나포션(michael, 마나포션);
 						ding.run();
 					}
-					연결.전투2(람머스, michael);
-					monsterBgm.run();
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(람머스, michael);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(람머스);
+						monsterBgm.run();
+					}
 					if (michael.hp <= 0) {
 						연결.사망(michael, 람머스);
 						메시지.몹정보(람머스);
@@ -289,9 +341,11 @@ public class game {
 				}
 				메시지.전투창(knghit_michael);
 				i = sc.nextInt();
+				status.run(michael, i);
 				if (i == 1) {
 					메시지.스킬창(knghit_michael, 베어가르기);
 					i = sc.nextInt();
+					status.run(knghit_michael, i);
 					if (i == 1) {
 						연결.전투(군다, knghit_michael, 베어가르기);
 						연결.마나소모(knghit_michael);
@@ -302,8 +356,15 @@ public class game {
 							mobdieBgm.run();
 							break;
 						}
-						연결.전투2(군다, knghit_michael);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(군다, knghit_michael);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(군다);
+							monsterBgm.run();
+						}
 						if (knghit_michael.hp <= 0) {
 							연결.사망(knghit_michael, 군다);
 							메시지.몹정보(군다);
@@ -324,6 +385,7 @@ public class game {
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
 					i = sc.nextInt();
+					status.run(knghit_michael, i);
 					ding.run();
 					if (i == 1) {
 						메시지.체력포션(knghit_michael, 체력포션);
@@ -333,8 +395,15 @@ public class game {
 						메시지.마나포션(knghit_michael, 마나포션);
 						ding.run();
 					}
-					연결.전투2(군다, knghit_michael);
-					monsterBgm.run();
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(군다, knghit_michael);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(군다);
+						monsterBgm.run();
+					}
 					if (knghit_michael.hp <= 0) {
 						연결.사망(knghit_michael, 군다);
 						메시지.몹정보(군다);
@@ -373,11 +442,12 @@ public class game {
 					연결.도트뎀(sword_saint_michael);
 				}
 				메시지.전투창(sword_saint_michael);
-
 				i = sc.nextInt();
+				status.run(sword_saint_michael, i);
 				if (i == 1) {
 					메시지.스킬창(sword_saint_michael, 홀리크로스);
 					i = sc.nextInt();
+					status.run(sword_saint_michael, i);
 					if (i == 1) {
 						연결.전투(디아블로, sword_saint_michael, 홀리크로스);
 						연결.마나소모(sword_saint_michael);
@@ -386,8 +456,15 @@ public class game {
 							연결.몹사망(디아블로);
 							break;
 						}
-						연결.전투2(디아블로, sword_saint_michael);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(디아블로, sword_saint_michael);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(디아블로);
+							monsterBgm.run();
+						}
 						if (sword_saint_michael.hp <= 0) {
 							연결.사망(sword_saint_michael, 디아블로);
 							메시지.몹정보(디아블로);
@@ -408,6 +485,7 @@ public class game {
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
 					i = sc.nextInt();
+					status.run(sword_saint_michael, i);
 					ding.run();
 					if (i == 1) {
 						메시지.체력포션(sword_saint_michael, 체력포션);
@@ -417,8 +495,15 @@ public class game {
 						메시지.마나포션(sword_saint_michael, 마나포션);
 						ding.run();
 					}
-					연결.전투2(디아블로, sword_saint_michael);
-					monsterBgm.run();
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(군다, knghit_michael);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(군다);
+						monsterBgm.run();
+					}
 					if (sword_saint_michael.hp <= 0) {
 						연결.사망(sword_saint_michael, 디아블로);
 						메시지.몹정보(디아블로);
@@ -466,9 +551,11 @@ public class game {
 				}
 				메시지.전투창(souljunior);
 				i = sc.nextInt();
+				status.run(souljunior, i);
 				if (i == 1) {
 					메시지.스킬창(souljunior, 베기);
 					i = sc.nextInt();
+					status.run(souljunior, i);
 					if (i == 1) {
 						연결.전투(람머스, souljunior, 베기);
 						연결.마나소모(souljunior);
@@ -477,8 +564,15 @@ public class game {
 							연결.몹사망(람머스);
 							break;
 						}
-						연결.전투2(람머스, souljunior);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(람머스, souljunior);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(람머스);
+							monsterBgm.run();
+						}
 						if (souljunior.hp <= 0) {
 							연결.사망(souljunior, 람머스);
 							메시지.몹정보(람머스);
@@ -500,6 +594,7 @@ public class game {
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
 					i = sc.nextInt();
+					status.run(souljunior, i);
 					ding.run();
 					if (i == 1) {
 						메시지.체력포션(souljunior, 체력포션);
@@ -509,8 +604,15 @@ public class game {
 						메시지.마나포션(souljunior, 마나포션);
 						ding.run();
 					}
-					연결.전투2(람머스, souljunior);
-					monsterBgm.run();
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(람머스, souljunior);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(람머스);
+						monsterBgm.run();
+					}
 					if (souljunior.hp <= 0) {
 						연결.사망(souljunior, 람머스);
 						메시지.몹정보(람머스);
@@ -550,10 +652,11 @@ public class game {
 					crazy.run();
 				}
 				메시지.전투창(soulsenior);
-				i = sc.nextInt();
+				status.run(soulsenior, i);
 				if (i == 1) {
 					메시지.스킬창(soulsenior, 베어가르기);
 					i = sc.nextInt();
+					status.run(soulsenior, i);
 					if (i == 1) {
 						연결.전투(군다, soulsenior, 베어가르기);
 						연결.마나소모(soulsenior);
@@ -562,8 +665,15 @@ public class game {
 							연결.몹사망(군다);
 							break;
 						}
-						연결.전투2(군다, soulsenior);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(군다, soulsenior);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(군다);
+							monsterBgm.run();
+						}
 						if (soulsenior.hp <= 0) {
 							연결.사망(soulsenior, 군다);
 							메시지.몹정보(군다);
@@ -584,6 +694,7 @@ public class game {
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
 					i = sc.nextInt();
+					status.run(soulsenior, i);
 					ding.run();
 					if (i == 1) {
 						메시지.체력포션(soulsenior, 체력포션);
@@ -593,8 +704,15 @@ public class game {
 						메시지.마나포션(soulsenior, 마나포션);
 						ding.run();
 					}
-					연결.전투2(군다, soulsenior);
-					monsterBgm.run();
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(군다, soulsenior);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(군다);
+						monsterBgm.run();
+					}
 					if (soulsenior.hp <= 0) {
 						연결.사망(soulsenior, 군다);
 						메시지.몹정보(군다);
@@ -621,7 +739,13 @@ public class game {
 			while (디아블로.hp > 0) {
 				cishu++;
 				if (cishu == 2) {
+					System.out.println("디아블로는 브레스를 뿜었습니다!!!");
+					연결.화상(soulmaster);
+					breath.run();
+				}
+				if (cishu == 2) {
 					연결.의지(soulmaster);
+					brave.run();
 					연결.난동(디아블로);
 					crazy.run();
 				}
@@ -634,9 +758,11 @@ public class game {
 				}
 				메시지.전투창(soulmaster);
 				i = sc.nextInt();
+				status.run(soulmaster, i);
 				if (i == 1) {
 					메시지.스킬창(soulmaster, 홀리크로스);
 					i = sc.nextInt();
+					status.run(soulmaster, i);
 					if (i == 1) {
 						연결.전투(디아블로, soulmaster, 홀리크로스);
 						연결.마나소모(soulmaster);
@@ -645,8 +771,15 @@ public class game {
 							연결.몹사망(디아블로);
 							break;
 						}
-						연결.전투2(디아블로, soulmaster);
-						monsterBgm.run();
+						n = random.nextBoolean();
+						if (n = true) {
+							연결.전투2(디아블로, soulmaster);
+							monsterBgm.run();
+						}
+						if (n = false) {
+							attack.run(디아블로);
+							monsterBgm.run();
+						}
 						if (soulmaster.hp <= 0) {
 							연결.사망(soulmaster, 디아블로);
 							메시지.몹정보(디아블로);
@@ -666,8 +799,9 @@ public class game {
 					메시지.포션();
 					메시지.포션표시(체력포션);
 					메시지.포션표시2(마나포션);
-					brave.run();
+					ding.run();
 					i = sc.nextInt();
+					status.run(soulmaster, i);
 					if (i == 1) {
 						메시지.체력포션(soulmaster, 체력포션);
 						ding.run();
@@ -676,8 +810,20 @@ public class game {
 						메시지.마나포션(soulmaster, 마나포션);
 						ding.run();
 					}
-					연결.전투2(디아블로, soulmaster);
-					monsterBgm.run();
+					if (cishu == 2) {
+						System.out.println("디아블로는 브레스를 뿜었습니다!!!");
+						연결.화상(soulmaster);
+						breath.run();
+					}
+					n = random.nextBoolean();
+					if (n = true) {
+						연결.전투2(디아블로, soulmaster);
+						monsterBgm.run();
+					}
+					if (n = false) {
+						attack.run(디아블로);
+						monsterBgm.run();
+					}
 					if (soulmaster.hp <= 0) {
 						연결.사망(soulmaster, 디아블로);
 						메시지.몹정보(디아블로);
@@ -692,10 +838,7 @@ public class game {
 						continue;
 					}
 				}
-				if (cishu == 2) {
-					System.out.println("디아블로는 브레스를 뿜었습니다!!!");
-					연결.화상(soulmaster);
-				}
+
 			}
 			diabloBgm.stop();
 			clearBgm.start();
@@ -703,7 +846,7 @@ public class game {
 			System.out.println("미하일키우기를 즐겨주셔서 감사합니다!!");
 			System.out.println();
 			clearBgm.stop();
-
 		}
+		sc.close();
 	}
 }

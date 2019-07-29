@@ -50,7 +50,6 @@ public class battle {
 
 	public int 공격보조(monster monst, character charact) {
 		if (monst.attack_value - (charact.defend_value + charact.equip.defend_value) < 0) {
-
 			return 0;
 		} else
 			return 1;

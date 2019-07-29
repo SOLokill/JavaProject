@@ -1,13 +1,10 @@
-
-public class Daynight extends Thread {
+public class Bloodtime extends Thread {
 	public monster monster;
 
-	public Daynight(monster monster) {
+	public Bloodtime(monster monster) {
 		this.monster = monster;
 	}
-
-	@Override
-	public void run() {
+	public void run(monster monster) {
 		int count = 0;
 		while (true) {
 			count++;
@@ -21,4 +18,5 @@ public class Daynight extends Thread {
 			}
 		}
 	}
+
 }
