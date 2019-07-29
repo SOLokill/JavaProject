@@ -75,7 +75,6 @@ public class game {
 		int i = 0;
 		// 여기까지 생성한 인스턴스 들이었습니다.
 		// 게임 시작
-
 		System.out.println("게임을 시작하겠습니다.");
 		System.out.println("게임을 시작하기 앞서서 게임에 대해서 설명해드리겠습니다.");
 		System.out.println("당신은 이 세계에서 몬스터를 잡아 전직을 해야합니다.");
@@ -105,7 +104,6 @@ public class game {
 		System.out.println("로딩 중...");
 ////		 게임 시작 기본 설명이었습니다.
 ////		 잠깐 텀
-
 		메시지.스토리시작();
 		pikachuBgm.start();
 		메시지.이동(beginner, 피카츄);
@@ -113,6 +111,16 @@ public class game {
 		int death = 0;
 		if (n = true) {
 			while (피카츄.hp > 0) {
+				if (cishu == 2) {
+					연결.의지(beginner);
+					brave.run();
+					연결.난동(피카츄);
+					crazy.run();
+				}
+				if (cishu > 2) {
+					연결.난동중(피카츄);
+					crazy.run();
+				}
 				메시지.전투창(beginner);
 				i = sc.nextInt();
 				status.run(beginner, i);
@@ -138,16 +146,6 @@ public class game {
 						if (n = false) {
 							attack.run(피카츄);
 							monsterBgm.run();
-						}
-						if (cishu == 2) {
-							연결.의지(beginner);
-							brave.run();
-							연결.난동(피카츄);
-							crazy.run();
-						}
-						if (cishu > 2) {
-							연결.난동중(피카츄);
-							crazy.run();
 						}
 						if (beginner.hp <= 0) {
 							연결.사망(beginner, 피카츄);
@@ -204,7 +202,6 @@ public class game {
 					continue;
 				}
 				if(i ==3 || i==4 ) {
-					status.run(beginner, i);
 					continue;
 				}
 				if (4 < i || i <= 0) {
@@ -351,7 +348,6 @@ public class game {
 						연결.마나소모(knghit_michael);
 						michknightBgm.run();
 						if (군다.hp <= 0) {
-
 							연결.몹사망(군다);
 							mobdieBgm.run();
 							break;

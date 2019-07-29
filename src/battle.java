@@ -56,7 +56,7 @@ public class battle {
 	}
 
 	public void 마나소모(character charact) {
-		charact.mp -= charact.skill1.use_mp;
+		charact.mp -=   charact.skill1.use_mp;
 	}
 
 	public void 난동(monster monster) {
@@ -143,16 +143,11 @@ public class battle {
 	}
 
 	public void 사망(character character, monster monster) {
-		try {
 			System.out.println(character.name + "은(는) 사망하셨습니다,");
-			Thread.sleep(1000);
 			System.out.println("여신의 가호가 내려와 당신을 다시 부활시켰습니다.");
-			Thread.sleep(1000);
 			System.out.println("일어나세요....용사여...");
-			Thread.sleep(1000);
 			System.out.println("몸이 완전히 회복되었습니다.");
 			System.out.println("캐릭터의 능력치가 조금 상승했습니다.");
-			Thread.sleep(1000);
 			character.hp = character.max_hp;
 			character.mp = character.max_mp;
 			character.attack_value = (character.atk + character.weapon.attack_value);
@@ -164,16 +159,10 @@ public class battle {
 			System.out.println(character.name + "의 체력 :" + character.hp);
 			System.out.println(character.name + "의 공격력 :" + (character.attack_value + character.weapon.attack_value));
 			System.out.println(character.name + "의 방어력 :" + (character.defend_value + character.equip.defend_value));
-		} catch (InterruptedException e) {
-		}
 	}
 
 	public void 몹사망(monster monster) {
-		try {
 			System.out.println(monster.name + "은(는) 쓰러졌습니다!!!");
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-		}
 	}
 
 	public void dead(monster monster) {
